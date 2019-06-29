@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Text;
 //using Project.TeamA;
 //using Project.TeamB;
 using ProjTA = Project.TeamA;
@@ -216,6 +217,8 @@ namespace c_sharp_practice
             //toString()
             /*use toString to convert int to string. int x = 6; string a = x.toString();
              * we can override toString() method for class and return custom text.
+             * differnce b/w Convert.toString and toString is that if we pass null to Convert.toString
+             * then it will convert it to string wheras toString give Exeption
              */
             //Employee e = new Employee() { ID = 1, Name = "Amar", Experience = 6, Salary = 89000 };
             //Console.WriteLine(e.ToString());
@@ -224,10 +227,53 @@ namespace c_sharp_practice
             /*== gives reference equality, Equals gives value equality(to get this functionality)
              * override method
              */
-             Employee e = new Employee() { ID = 1, Name = "Amar", Experience = 6, Salary = 89000 };
-             Employee e2 = new Employee() { ID = 1, Name = "Amar", Experience = 6, Salary = 89000 };
-            Console.WriteLine(e == e2);
-            Console.WriteLine(e.Equals(e2));
+            //     Employee e = new Employee() { ID = 1, Name = "Amar", Experience = 6, Salary = 89000 };
+            //     Employee e2 = new Employee() { ID = 1, Name = "Amar", Experience = 6, Salary = 89000 };
+            //    Console.WriteLine(e == e2);
+            //    Console.WriteLine(e.Equals(e2));
+
+            //String and StringBuilder
+            /*
+             * String is immutable while StringBuilder is mutable
+             * e.g string a = "c#"; a += "tutorials"; in heap a was 1st referncing to c# but now a new
+             * string is generated c# tutorials and a start refering it, whereas in stringbuilder
+             * a new string is not generated and object keep on referring same string, it's the string that
+             * will change, so from performance point of view stringbuilder is better when heavy string
+             * manipulation is required.
+             */
+            //String a = "C#";
+            //a += " tutorials";
+            //StringBuilder b = new StringBuilder("C#");
+            //b.Append(" tutorials");
+            //Console.WriteLine(a);
+            //Console.WriteLine(b);
+
+            /**
+             * partial classes
+             * allow us to split a class into two or more files, on compilation all these are then combined
+             * to single class. use partial keyword to use.
+             * Rules
+             * 1-All parts spread across multiple files should use partial keyword
+             * 2-All parts spread across multiple files should have same access modifiers. 
+             * 3-if any of the parts are declared abstract then entire type is considered abstract
+             * 4-if any of the parts are declared sealed then entire type is considered sealed
+             * 5-if any of the parts are inherits a class then entire type is considered inherting.
+             * 6-Different parts of partial class can specify different base interfaces.
+             * 7-Any members that are declared in partial defination are available to all other parts
+             * of partial class
+             */
+
+            /*partial methods
+             * declaration of partial method, if partial method has no implementation then compiler
+             * will ignore it without giving error, u can provide implemenation in other parts of 
+             * partial class. no access modifiers are allowed they are private by default.
+             * there must be declaration of partial method otherwise it'll not be partial method.
+             * return type must be void. it must be declared inside partial class or struct.
+             * one partial method can be implemented only once. 
+             */
+            SamplePartial samplePartial = new SamplePartial();
+            samplePartial.print();
+
         }
 
         public static bool areEqual<T>(T a, T b)
@@ -256,6 +302,24 @@ namespace c_sharp_practice
             sum = x + y;
             prod = x * y;
             z = 9;
+        }
+    }
+
+    public partial class SamplePartial
+    {
+        partial void AMethod();
+        public void print()
+        {
+            Console.WriteLine("Print method invoked");
+            AMethod();
+        }
+    }
+
+    public partial class SamplePartial
+    {
+        partial void AMethod()
+        {
+            Console.WriteLine("Sample partial method");
         }
     }
 
