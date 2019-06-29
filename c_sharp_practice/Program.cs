@@ -202,6 +202,37 @@ namespace c_sharp_practice
             //object o =  Activator.CreateInstance(t, "hi");
             //MethodInfo meth = t.GetMethod("PrintMethod");
             //meth.Invoke(o, null);
+
+            //Generics
+            /*generics allow us to design classes and methods decoupled from the data types.
+             * if we use object as parameter then it will work fine for object child however int is struct
+             * so unnecssary boxing unboxing will occur casuing performance issue. to fix this and many
+             * other related issue we use generics that will be independent of type,
+             * u will tell in <> on which types u want to operate this function
+             * class can also be made generic which mean that class will operate on that data type
+             */
+            //Console.WriteLine(areEqual<string>("ho", "ho"));
+
+            //toString()
+            /*use toString to convert int to string. int x = 6; string a = x.toString();
+             * we can override toString() method for class and return custom text.
+             */
+            //Employee e = new Employee() { ID = 1, Name = "Amar", Experience = 6, Salary = 89000 };
+            //Console.WriteLine(e.ToString());
+
+            //Equalities
+            /*== gives reference equality, Equals gives value equality(to get this functionality)
+             * override method
+             */
+             Employee e = new Employee() { ID = 1, Name = "Amar", Experience = 6, Salary = 89000 };
+             Employee e2 = new Employee() { ID = 1, Name = "Amar", Experience = 6, Salary = 89000 };
+            Console.WriteLine(e == e2);
+            Console.WriteLine(e.Equals(e2));
+        }
+
+        public static bool areEqual<T>(T a, T b)
+        {
+            return a.Equals(b);
         }
 
         public static bool isPromotable(Employee e)
@@ -249,6 +280,26 @@ namespace c_sharp_practice
                     Console.WriteLine(e.Name + " Promoted");
                 }
             }
+        }
+
+        public override string ToString()
+        {
+            return "Employee " + Name + " has salary = " + Salary; 
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            else if (!(obj is Employee))
+                return false;
+            else
+                return ID == ((Employee)obj).ID && Name == ((Employee)obj).Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return ID.GetHashCode() ^ Name.GetHashCode();
         }
     }
 
