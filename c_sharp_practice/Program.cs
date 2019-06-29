@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 //using Project.TeamA;
 //using Project.TeamB;
 using ProjTA = Project.TeamA;
@@ -158,6 +159,49 @@ namespace c_sharp_practice
 
             //enums 
             //line 187
+
+            //Reflection
+            /*reflection is ability to inspect assembly meta data ar runtime. when we bulid solution the
+             * classes are assembled in assembly. when we look at assembly it consist of two parts, 
+             * one is the intermediate language and the other one is meta data, meta data contain info
+             * about type. e.g what are different types in this assembly e.g Employee, Customer etc.,
+             * what are its members(e.g constructors, methods, name etc) so all info about these type is 
+             * packaged in form of metadata. What is reflection then? taking that assembly and inspecting
+             * it e.g. how many classes, enums, structs etc it got and for each class what are different 
+             * members. How it is useful? when we drag and drop a btn, we know btn is a class and it got
+             * properties, so when we click on it, all of its properties appear on one sidebar, this is done
+             * through reflection(pulling all properties from assembly).
+             * Early binding - e.g on creating customer object we have knowledge about this customer at 
+             * compile time.
+             * Late Binding - e.g u might not have knowledge at compile time about class, so u can only 
+             * create its instance at runtime dynamically.
+             */
+            //Type type = Type.GetType("c_sharp_practice.Employee");
+            //Type type = typeof(Employee);
+            //Console.WriteLine("Full name = {0}" ,type.FullName);
+            //Console.WriteLine("name = {0}", type.Name);
+            //Console.WriteLine("namespace = {0}", type.Namespace);
+            //PropertyInfo[] properties = type.GetProperties();
+            //foreach(PropertyInfo property in properties)
+            //{
+            //    Console.WriteLine(property.Name + " - " + property.PropertyType);
+            //}
+            //MethodInfo[] methods = type.GetMethods();
+            //foreach (MethodInfo method in methods)
+            //{
+            //    Console.WriteLine(method.Name + " - " + method.ReturnType);
+            //}
+
+            //Late Binding - if we don't have info 
+            /*first of all load assembly, activator will create instance, since we don't know type so use 
+             * object, u can get method, if it was a static method we will directly get it from type,
+             * now to invoke first pass parameters;
+             */
+            //Assembly executingAssembly = Assembly.GetExecutingAssembly();
+            //Type t = executingAssembly.GetType("c_sharp_practice.ParentClass");
+            //object o =  Activator.CreateInstance(t, "hi");
+            //MethodInfo meth = t.GetMethod("PrintMethod");
+            //meth.Invoke(o, null);
         }
 
         public static bool isPromotable(Employee e)
