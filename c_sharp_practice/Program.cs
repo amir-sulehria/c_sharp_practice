@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 //using Project.TeamA;
@@ -271,9 +272,60 @@ namespace c_sharp_practice
              * return type must be void. it must be declared inside partial class or struct.
              * one partial method can be implemented only once. 
              */
-            SamplePartial samplePartial = new SamplePartial();
-            samplePartial.print();
+            //SamplePartial samplePartial = new SamplePartial();
+            //samplePartial.print();
 
+            /*Optioanl parameters
+             * there are 4 ways of making method parameters optional
+             * 1-use parameter array e.g. addNumbers(int a, int b, params object[] restOfNumbers)
+             * 2-Method overloading e.g. addNum(int a, int b) and addNum(int a, int b, int[] c)
+             * 3-specify parameter deafults e.g. addNum(int a, int b, int[] c = null), now we can simply call addNum(10, 20), 
+             * optional paramter must appear after all required parameters, in case of more than one optional parameter u can use c:2 
+             * 4-use optional attribute that's present in System.Runtime.InteropServices nampespace 
+             * e.g. addNum(int a, int b, [Optional] int[] c = null)
+             */
+
+            /*Dictionary-collection of key value pair
+             * keys must be unique, we can retrieve both key and value from Dictornary
+             */
+            Manager manager = new Manager()
+            {
+                id = 101,
+                name = "Qasim",
+                salary = 200000
+            };
+            Manager manager2 = new Manager()
+            {
+                id = 121,
+                name = "Abdullah",
+                salary = 200343
+            };
+            Dictionary<int, Manager> dictoinaryManagers = new Dictionary<int, Manager>();
+            dictoinaryManagers.Add(manager.id, manager);
+            dictoinaryManagers.Add(manager2.id, manager2);
+            //Console.WriteLine("Customer name is: {0}", dictoinaryManagers[121].name);
+            foreach (KeyValuePair<int, Manager> keyValuePair in dictoinaryManagers)
+            {
+                Console.WriteLine("Name is: {0}", dictoinaryManagers[keyValuePair.Key].name);
+            }
+            //e.g u want to search customer then
+            if (dictoinaryManagers.ContainsKey(101))
+            {
+                Console.WriteLine("Name of manager is: {0}", dictoinaryManagers[101].name);
+
+            }
+            //Try Get value function is used when u aren't sure if dictonary contains that key, this method returns value
+            //the 2nd arg will receive the value that u will get, the return type is boolean     
+            Manager m;
+            dictoinaryManagers.TryGetValue(101, out m);
+            //Count method returns total number of values inside dictionary, we can also put conditions
+            Console.WriteLine(dictoinaryManagers.Count(kvp => kvp.Value.salary > 200000 ));
+            //remove method will remove one while clear will remove all values from dictionary
+            //to convert array to dictionary
+            Manager[] managers = new Manager[2];
+            managers[0] = manager;
+            managers[1] = manager2;
+            Dictionary<int, Manager> dic = managers.ToDictionary(mng => mng.id, mng => mng);
         }
 
         public static bool areEqual<T>(T a, T b)
@@ -365,6 +417,13 @@ namespace c_sharp_practice
         {
             return ID.GetHashCode() ^ Name.GetHashCode();
         }
+    }
+
+    public class Manager
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+        public int salary { get; set; }
     }
 
     interface ICust
