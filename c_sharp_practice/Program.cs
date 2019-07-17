@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -17,12 +18,14 @@ namespace c_sharp_practice
     {
         static void Main(string[] args)
         {
+            #region Foreach Loop
             //foreach loop
             //int[] Numbers = {101, 102, 103 };
             //foreach(int x in Numbers)
             //Console.WriteLine("x = " + x);
+            #endregion
 
-
+            #region Types of Parametes
             /*Types of parameters
             Value Parameters = pass by value
             Reference Parameters = reference to variable is passed
@@ -35,11 +38,15 @@ namespace c_sharp_practice
             //Calculate(10, 15, ref refVar, out total, out product, 3, 4, 6, 8, 3, 8);
             //Console.WriteLine("Value of x = {0} after method call", refVar);
             //Console.WriteLine("Total = {0} and Product = {1}", total, product);
+            #endregion
 
+            #region Namespace
             //using namespace
             //ProjTA.ClassA.Print();
             //ProjTB.ClassA.Print();
+            #endregion
 
+            #region Static
             /*static
              * if u create a static constructor then it will be called before instance constructor is called or static variable is referenced
              * static constructor can be used to initialize static fields or action that only needs to be performed only once.
@@ -50,7 +57,9 @@ namespace c_sharp_practice
 
             //Circle circle2 = new Circle(15);
             //Console.WriteLine("Area = " + circle2.calculateArea());
+            #endregion
 
+            #region Inheritance
             /*inheritance
              * equivelent of super is base keyword in c#
              * method hiding or shadowing base class method, use new keyword, if u still want to use base method then use base.methodName() 
@@ -60,7 +69,9 @@ namespace c_sharp_practice
             //childClass.PrintMethod();
             //childClass.VirPrintMethod();
             //((ParentClass)childClass).VirPrintMethod();
+            #endregion
 
+            #region Getter Setter
             //getter setter
             //in case u don't want to check any condition, then simply use get set as in below method
             //behind scenes compiler will create private field for above case and then get set
@@ -69,7 +80,9 @@ namespace c_sharp_practice
             //std.Name = "Ali";
             //std.city = "Lahore";
             //Console.WriteLine("Name is {0}, city is {1} and id is {2}", std.Name, std.city, std.Id);
+            #endregion
 
+            #region Struct
             //struct
             //many ways to initialize, nearly same as class object initialization, following is object initializer method
             //struct is value type class is reference type
@@ -83,7 +96,10 @@ namespace c_sharp_practice
             //    Name = "Paul"
             //};
             //Console.WriteLine("Name is {0} and id is {1}", c.Name, c.Id);
+            #endregion
 
+
+            #region Interface
             //interfaces can only provide declaration of methods, they can't contain fields
             //if u r inheriting from two interfaces having same method name then ambiguity will rise, to fix
             //this we'll use explicit interface implementation, there r two rules for it,
@@ -93,10 +109,14 @@ namespace c_sharp_practice
             //c.Print2();
             //((ICust)c).Hi();
             //((ICust2)c).Hi();
+            #endregion
 
+            #region Abstract Class
             //abstract class 
             //incomplete class, abstract method inside it cannot declare body
+            #endregion
 
+            #region Delegate
             //delegate is a type safe function pointer, so when u invoke delegate, function will be invoked
             //see syntax outside class, so delegate on line 9 can be used to point to a function with similar signature
             //return type and parameter should match. to make it point create instance of it like class, in 
@@ -122,7 +142,9 @@ namespace c_sharp_practice
             //we can do this by using + symbol. e.g. del4 = del1+del2+del3 so del4 is now multicast delegate 
             //we can also use +=. +, -, +=, -= are valid operations. in case func return something then only
             //last return value will be returned.
+            #endregion
 
+            #region Exeption Handling
             //Exeption handling(inner exeption included)
             //inner exception return exeption instance that caused current exception
             //try {
@@ -158,10 +180,14 @@ namespace c_sharp_practice
             //    Console.WriteLine("Current exeption = " + ex.GetType().Name);
             //    Console.WriteLine("Inner exeption = " + ex.InnerException.GetType().Name);
             //}
+            #endregion
 
+            #region Enums
             //enums 
             //line 187
+            #endregion
 
+            #region Reflection and Bindings
             //Reflection
             /*reflection is ability to inspect assembly meta data ar runtime. when we bulid solution the
              * classes are assembled in assembly. when we look at assembly it consist of two parts, 
@@ -204,7 +230,9 @@ namespace c_sharp_practice
             //object o =  Activator.CreateInstance(t, "hi");
             //MethodInfo meth = t.GetMethod("PrintMethod");
             //meth.Invoke(o, null);
+            #endregion
 
+            #region Generics
             //Generics
             /*generics allow us to design classes and methods decoupled from the data types.
              * if we use object as parameter then it will work fine for object child however int is struct
@@ -214,7 +242,9 @@ namespace c_sharp_practice
              * class can also be made generic which mean that class will operate on that data type
              */
             //Console.WriteLine(areEqual<string>("ho", "ho"));
+            #endregion
 
+            #region Some Useful methods
             //toString()
             /*use toString to convert int to string. int x = 6; string a = x.toString();
              * we can override toString() method for class and return custom text.
@@ -232,7 +262,9 @@ namespace c_sharp_practice
             //     Employee e2 = new Employee() { ID = 1, Name = "Amar", Experience = 6, Salary = 89000 };
             //    Console.WriteLine(e == e2);
             //    Console.WriteLine(e.Equals(e2));
+            #endregion
 
+            #region String vs StringBuilder
             //String and StringBuilder
             /*
              * String is immutable while StringBuilder is mutable
@@ -248,7 +280,9 @@ namespace c_sharp_practice
             //b.Append(" tutorials");
             //Console.WriteLine(a);
             //Console.WriteLine(b);
+            #endregion
 
+            #region Partial Classes and Methods
             /**
              * partial classes
              * allow us to split a class into two or more files, on compilation all these are then combined
@@ -274,7 +308,9 @@ namespace c_sharp_practice
              */
             //SamplePartial samplePartial = new SamplePartial();
             //samplePartial.print();
+            #endregion
 
+            #region Optional Parameters
             /*Optioanl parameters
              * there are 4 ways of making method parameters optional
              * 1-use parameter array e.g. addNumbers(int a, int b, params object[] restOfNumbers)
@@ -284,48 +320,122 @@ namespace c_sharp_practice
              * 4-use optional attribute that's present in System.Runtime.InteropServices nampespace 
              * e.g. addNum(int a, int b, [Optional] int[] c = null)
              */
+            #endregion
 
+            #region Dictionary
             /*Dictionary-collection of key value pair
              * keys must be unique, we can retrieve both key and value from Dictornary
              */
-            Manager manager = new Manager()
-            {
-                id = 101,
-                name = "Qasim",
-                salary = 200000
-            };
-            Manager manager2 = new Manager()
-            {
-                id = 121,
-                name = "Abdullah",
-                salary = 200343
-            };
-            Dictionary<int, Manager> dictoinaryManagers = new Dictionary<int, Manager>();
-            dictoinaryManagers.Add(manager.id, manager);
-            dictoinaryManagers.Add(manager2.id, manager2);
-            //Console.WriteLine("Customer name is: {0}", dictoinaryManagers[121].name);
-            foreach (KeyValuePair<int, Manager> keyValuePair in dictoinaryManagers)
-            {
-                Console.WriteLine("Name is: {0}", dictoinaryManagers[keyValuePair.Key].name);
-            }
-            //e.g u want to search customer then
-            if (dictoinaryManagers.ContainsKey(101))
-            {
-                Console.WriteLine("Name of manager is: {0}", dictoinaryManagers[101].name);
+            //Manager manager = new Manager()
+            //{
+            //    id = 101,
+            //    name = "Qasim",
+            //    salary = 200000
+            //};
+            //Manager manager2 = new Manager()
+            //{
+            //    id = 121,
+            //    name = "Abdullah",
+            //    salary = 200343
+            //};
+            //Dictionary<int, Manager> dictoinaryManagers = new Dictionary<int, Manager>();
+            //dictoinaryManagers.Add(manager.id, manager);
+            //dictoinaryManagers.Add(manager2.id, manager2);
+            ////Console.WriteLine("Customer name is: {0}", dictoinaryManagers[121].name);
+            //foreach (KeyValuePair<int, Manager> keyValuePair in dictoinaryManagers)
+            //{
+            //    Console.WriteLine("Name is: {0}", dictoinaryManagers[keyValuePair.Key].name);
+            //}
+            ////e.g u want to search customer then
+            //if (dictoinaryManagers.ContainsKey(101))
+            //{
+            //    Console.WriteLine("Name of manager is: {0}", dictoinaryManagers[101].name);
 
-            }
-            //Try Get value function is used when u aren't sure if dictonary contains that key, this method returns value
-            //the 2nd arg will receive the value that u will get, the return type is boolean     
-            Manager m;
-            dictoinaryManagers.TryGetValue(101, out m);
-            //Count method returns total number of values inside dictionary, we can also put conditions
-            Console.WriteLine(dictoinaryManagers.Count(kvp => kvp.Value.salary > 200000 ));
-            //remove method will remove one while clear will remove all values from dictionary
-            //to convert array to dictionary
-            Manager[] managers = new Manager[2];
-            managers[0] = manager;
-            managers[1] = manager2;
-            Dictionary<int, Manager> dic = managers.ToDictionary(mng => mng.id, mng => mng);
+            //}
+            ////Try Get value function is used when u aren't sure if dictonary contains that key, this method returns value
+            ////the 2nd arg will receive the value that u will get, the return type is boolean     
+            //Manager m;
+            //dictoinaryManagers.TryGetValue(101, out m);
+            ////Count method returns total number of values inside dictionary, we can also put conditions
+            //Console.WriteLine(dictoinaryManagers.Count(kvp => kvp.Value.salary > 200000 ));
+            ////remove method will remove one while clear will remove all values from dictionary
+            ////to convert array to dictionary
+            //Manager[] managers = new Manager[2];
+            //managers[0] = manager;
+            //managers[1] = manager2;
+            //Dictionary<int, Manager> dic = managers.ToDictionary(mng => mng.id, mng => mng);
+            #endregion
+
+            #region List
+            //List
+            //just like arrays but growable in size, e.g. below we set size to 1 but we're still able to add 3 items
+            //they are strongly typed
+            //Manager m1 = new Manager(1, "ALi", 32200);
+            //Manager m2 = new Manager(2, "Asfand", 22200);
+            //Manager m3 = new Manager(3, "Yasir", 52200);
+            //List<Manager> listManagers = new List<Manager>(1);
+            //listManagers.Add(m1);
+            //listManagers.Add(m2);
+            //listManagers.Add(m3);
+            ////m1 will not be overwritten instead pushed by one position
+            //listManagers.Insert(0, m3);
+            //foreach (Manager manager in listManagers)
+            //{
+            //    Console.WriteLine("Name of Manager: {0}", manager.name);
+            //}
+            ////to add multiple items(list) at a time use addRange
+            //List<Manager> anotherList = new List<Manager>();
+            //anotherList.AddRange(anotherList);
+            ////there are many other methods, explore them urself
+            ////GetRange allow u to get range of items, take start index and count as input parameters
+            ////insertrange take index and list as input
+            ////in removeAll u can pass lambda expression as input
+            ////removeRange remove range of items and take index and count as input   
+
+            //List Sorting
+            //List<int> num = new List<int> {15, 32, 62, 44, 25, 65, 7, 28, 49};
+            //for ascending
+            //num.Sort();
+            //for descending, first sort in ascending then reverse
+            //num.Reverse();
+            //Sorting for complex types
+            //implement Icomparable interface for sorting 
+            //List<Manager> managers = new List<Manager>();
+            //Manager m1 = new Manager(1, "ALi", 32200);
+            //Manager m2 = new Manager(2, "Asfand", 22200);
+            //Manager m3 = new Manager(3, "Yasir", 52200);
+            //managers.Add(m1);
+            //managers.Add(m2);
+            //managers.Add(m3);
+            //managers.Sort();
+            //foreach (Manager manager in managers)
+            //{
+            //    Console.WriteLine("Salary = {0}", manager.salary);
+            //}
+            //below we're using delegate to sort by id
+            //Comparison<Manager> customerComparer = new Comparison<Manager>(CompareCustomer);
+            //managers.Sort(customerComparer);
+            //following is shorter way, another way will be to use lambda expression 
+            //managers.Sort(delegate (Manager mm1, Manager mm2) { return mm1.id.CompareTo(mm2.id); });
+            //managers.Sort((x, y) => x.id.CompareTo(y.id));
+
+            //Some useful methods of list collection class
+            //TrueForAll()-return true if every element in list satisfy a condition
+            //bool a = managers.TrueForAll(x => x.salary > 4000);
+            //AsReadOnly()-return a read only wrapper for current collection. use it if u dont'y want client to modify it
+            //ReadOnlyCollection<Manager> readOnlyManagers = managers.AsReadOnly();
+            //TrimExcess()-trim capacity to actual number of elements, used  to reduce memory overhead
+
+            //When to use dictionary over list
+            //when u want to perform searching on basis of something, because list is going to check every element until target
+            //founds
+            #endregion
+        }
+
+        #region Helper Methods
+        public static int CompareCustomer(Manager x, Manager y)
+        {
+            return x.id.CompareTo(y.id);
         }
 
         public static bool areEqual<T>(T a, T b)
@@ -355,8 +465,10 @@ namespace c_sharp_practice
             prod = x * y;
             z = 9;
         }
+#endregion
     }
 
+    #region Helper Classes, Interfaces, Enums, Struct
     public partial class SamplePartial
     {
         partial void AMethod();
@@ -419,12 +531,35 @@ namespace c_sharp_practice
         }
     }
 
-    public class Manager
+    public class Manager : IComparable<Manager>
     {
+        public Manager()
+        {
+
+        }
+        public Manager(int id, string name, int salary)
+        {
+            this.id = id;
+            this.name = name;
+            this.salary = salary;
+        }
         public int id { get; set; }
         public string name { get; set; }
         public int salary { get; set; }
+
+        public int CompareTo(Manager other)
+        {
+            //if (this.salary > other.salary)
+            //    return 1;
+            //else if (this.salary < other.salary)
+            //    return -1;
+            //else
+            //    return 0;
+            //since int also implements IComparable so
+            return this.salary.CompareTo(other.salary);
+        }
     }
+
 
     interface ICust
     {
@@ -569,8 +704,10 @@ namespace c_sharp_practice
         }
 
     }
+    #endregion
 }
 
+#region Namespace
 /*
  * namespaces help to organize program and avoid name clashes. e.g if working on project we assign some task 
  * to team and some to team b, we want all classes develope by team a to be presented in project.team a namespace,
@@ -608,3 +745,4 @@ namespace Project
 
     }
 }
+#endregion
